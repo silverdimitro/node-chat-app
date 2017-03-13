@@ -34,12 +34,19 @@ io.on('connection',(socket)=>{
     callback();
   });
   socket.on('createMessage',(data,callback)=>{
-    console.log('got createMessage from client with ',data);
-    io.emit('newMessage',generateMessage(data.from,data.text));
+    var user = users.getUser(socket.id);
+    if(user && isRealString(data.text)){
+      io.to(user.room).emit('newMessage',generateMessage(user.name,data.text));
+
+    }
     callback();
   });
   socket.on('createLocationMessage',(coords)=>{
-    io.emit('newLocationMessage',generateLocationMessage('admin',coords.latitude, coords.longitude));
+    var user = users.getUser(socket.id);
+    if(user){
+
+    io.to(user.room).emit('newLocationMessage',generateLocationMessage(user.name,coords.latitude, coords.longitude));
+    }
   });
   socket.on('disconnect',()=>{
     console.log('client disconnected');
