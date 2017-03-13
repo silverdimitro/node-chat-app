@@ -3,18 +3,30 @@
   <head>
     <meta charset="utf-8">
     <title>welcome</title>
-  </head>
-  <body>
-    <p>welcome to chat app</p>
-    <ol id="messages"></ol>
-    <form id="message-form">
-      <input type="text" name="message" placeholder="Message"/>
-      <button>send</button>
-    </form>
-    <script src="/socket.io/socket.io.js"> </script>
+    <link rel="stylesheet" href="/css/styles.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
-    <script src="/js/libs/jquery-3.1.1.min.js">
+  </head>
+  <body class="chat">
+    <div class="chat__sidebar">
+      <h3>people</h3>
+      <div id="users"></div>
+    </div>
+    <div class="chat__main">
+
+      <ol id="messages" class="chat__messages"></ol>
+      <div class="chat__footer">
+        <form id="message-form">
+          <input type="text" name="message" placeholder="Message" autofocus autocomplete="off"/>
+          <button>send</button>
+        </form>
+        <button type="button" name="button" id="send-location">send location</button>
+
+      </div>
+
+    </div>
+    <script src="/socket.io/socket.io.js"> </script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script> -->
+    <script src="jquery-3.1.1.min.js">
 
     </script>
     <script src="/js/index.js"></script>
